@@ -1,13 +1,68 @@
 {% extends 'base.ecole.html.twig' %}
 
-{% block title %}Classes{% endblock %}
+{% block title %}Liste des classes{% endblock %}
 
 {% block body %}
+
 <h1>Classes</h1>
 <a href="" class="btn btn-info mb-2 px-3">Ajouter</a>
-<div class="card">
-<div class="card-body">
-interface
-</div>
+<div class="row col-8">
+    <div class="card">
+        
+        <div class="card-body">
+
+            {% if classes %}
+            <h4 class="card-title">Liste des classes disponible</h4>
+           <div class="table-responsive">
+           
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Nom</th>
+                        <th>Effectif</th>
+                        <th>Actions</th>
+                        
+                    </tr>
+                </thead>
+                
+            
+                <tbody>
+                    {% for classe in classes %}
+                    <tr>
+                        <td>{{classe.id}}</td>
+                        <td>{{classe.nom}}</td>
+                        <td>{{classes|length}}</td>
+                        <td>
+                            <button type="button" class=" btn-link btn btn-primary   mr-2"><a href="{{path("edit_classe",{"id":classe.id})}}" class="text-light ">Editer</a></button>
+                            <button type="button" class="btn btn-warning   mr-2"><a href="{{path("edit_classe",{"id":classe.id})}}" class="text-light ">Supp</a></button>
+                        </td>
+                        
+                        
+                    </tr>
+                    {% endfor %}
+                  
+                
+                </tbody>
+            </table>
+           </div>
+             
+            {% else %}
+            <h4>Aucune classes</h4>
+            {% endif %}
+              
+        </div>
+    </div>
 </div>
 {% endblock %}
+
+
+
+  {# {% if classes %}
+                     
+                
+            </div>
+                {% else %}
+
+                {% endif %} #}
+            

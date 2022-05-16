@@ -1,10 +1,32 @@
 {% extends 'base.ecole.html.twig' %}
 
-{% block title %}SYSCHOOL - Ajoute de nouvelles classes{% endblock %}
+{% block title %}{{title}}{% endblock %}
 
 {% block body %}
-<h1>Ajouter une nouvelle Classe</h1>
+
 <div class="row">
-    {{form(form)}}
-</div>
+    <div class="card">
+        
+        <div class="card-body">
+            <h4 class="">{{title}}</h4>
+           {{form_start(form)}}
+           <div class="form-group">
+            {{form_row(form.nom,{"attr":{"placeholder":"Veuillez saisir la classe ex:5e","class":"form-control"},"label":"Nom de la classe:"})}}
+           </div>
+     
+           <button type="submit" class="btn btn-primary bg-info  mr-2">
+               {% if editMode %}
+                Ajouter
+                {% else %}
+                Modifier
+                {% endif %}
+            </button>
+        <button type="reset" class="btn btn-light">Cancel</button>
+           {{form_end(form)}}
+        </div>
+        
+        </div>
+    </div>
+   
+
 {% endblock %}
