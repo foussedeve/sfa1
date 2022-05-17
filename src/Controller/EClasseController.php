@@ -20,7 +20,7 @@ class EClasseController extends AbstractController
     }
 
     /**
-     * @Route("/classes", name="ecole_classe")
+     * @Route("/ecole/classes", name="ecole_classe")
      */
     public function index(ClasseRepository $classeRepo): Response
     {
@@ -31,8 +31,8 @@ class EClasseController extends AbstractController
     }
 
     /**
-     * @Route("/classe/add", name="add_classe")
-     * @Route("/classe/edit/{id}", name="edit_classe")
+     * @Route("/ecole/classe/add", name="add_classe")
+     * @Route("/ecole/classe/edit/{id}", name="edit_classe")
      */
     public function addClasse(Request $request, classe $classe = null): Response
     {
@@ -48,6 +48,7 @@ class EClasseController extends AbstractController
 
             $this->em->persist($classe);
             $this->em->flush();
+            $this->addFlash("success","Classe ajoutée avec succès");
             return $this->redirectToRoute("ecole_classe");
         }
 
