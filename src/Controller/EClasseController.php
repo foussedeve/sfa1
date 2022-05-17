@@ -58,4 +58,15 @@ class EClasseController extends AbstractController
             "title" => $classe->getId() == null ? "Ajouter une nouvelle Classe" : "Modifier la classe"
         ]);
     }
+
+
+      /**
+     * @Route("/ecole/classe/delete/{id}", name="del_classe")
+     */
+    public function delClasse(ClasseRepository $classeRepo, classe $classe ): Response
+    {
+        $classeRepo->remove($classe,true);
+        $this->addFlash("success","Classe supprimée avec succès");
+        return $this->redirectToRoute("ecole_classe");
+    }
 }
