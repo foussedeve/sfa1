@@ -1,20 +1,63 @@
-{% extends 'base.html.twig' %}
+{% extends 'base.ecole.html.twig' %}
 
-{% block title %}Hello EParentController!{% endblock %}
+{% block title %}Liste des parents!{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+<div class="row ">
+    <div class="card">
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+        <div class="card-body">
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/Users/C55/Downloads/Web-projets/EssitechPhaseII/SYMFONY-AVANCEE/SFA1/src/Controller/EParentController.php'|file_link(0) }}">src/Controller/EParentController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/Users/C55/Downloads/Web-projets/EssitechPhaseII/SYMFONY-AVANCEE/SFA1/templates/e_parent/index.html.twig'|file_link(0) }}">templates/e_parent/index.html.twig</a></code></li>
-    </ul>
+            {% if parents %}
+            <h4 class="card-title">Liste des parents disponible</h4>
+            <div class="table-responsive">
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Nom</th>
+                            <th>Prénom</th>
+                            <th>Email</th>
+                            <th>Téléphone</th>
+                            <th>Localisation</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+
+                        </tr>
+                    </thead>
+
+
+                    <tbody>
+                        {% for parent in parents %}
+                        <tr>
+                            <td>{{parent.id}}</td>
+                            <td>{{parent.nom}}</td>
+                            <td>{{parent.prenom}}</td>
+                            <td>{{parent.email}}</td>
+                            <td>{{parent.telephone}}</td>
+                            <td>{{parent.localisation}}</td>
+                            <td>{{parent.isActif ? "Actif":"Non actif"}}</td>
+                            <td>
+                                <button type="button" class=" btn-link btn btn-primary   mr-2"><a href="{{path("edit_parent",{"id":parent.id})}}" class="text-light ">Editer</a></button>
+                                <button type="button" class="btn btn-warning   mr-2"><a href="{{path("del_parent",{"id":parent.id})}}" class="text-light ">Supp</a></button>
+                            </td>
+
+
+                        </tr>
+                        {% endfor %}
+
+
+                    </tbody>
+                </table>
+            </div>
+
+            {% else %}
+            <h4>Aucun parents</h4>
+            {% endif %}
+
+        </div>
+    </div>
 </div>
+
 {% endblock %}

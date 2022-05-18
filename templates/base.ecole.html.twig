@@ -11,6 +11,8 @@
     <link rel="stylesheet" href={{asset("dashboard/vendors/typicons/typicons.css")}}>
     <link rel="stylesheet" href={{asset("dashboard/vendors/css/vendor.bundle.base.css")}}>
     <link rel="stylesheet" href={{asset("dashboard/css/vertical-layout-light/style.css")}}>
+    <link rel="stylesheet" href={{asset("css/ecole.css")}}>
+
     <link rel="shortcut icon" href="{{asset("assets/logo/logo-syschool1.jpg")}}">
     {% block otherStyles %}{% endblock %}
 
@@ -198,8 +200,8 @@
             </a>
             <div class="collapse" id="ui-basic">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/buttons.html">Liste</a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/dropdowns.html">Ajouter</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{path("app_parent")}}">Liste</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{path("add_parent")}}">Ajouter</a></li>
                 <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Typography</a></li>
               </ul>
             </div>
