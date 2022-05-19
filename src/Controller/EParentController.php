@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Form\ParentPasswordType;
 use App\Form\ParentType;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -97,5 +98,29 @@ class EParentController extends AbstractController
             $this->addFlash("success", "Parent suppimé avec succès");
             return $this->redirectToRoute("app_parent");
 
+    }
+
+     /**
+     * @Route("/ecole/parent/edit/password/{id}", name="edit_password_parent")
+     */
+    public function editPasswordParent(User $parent, Request $request): Response
+    {
+
+        $form = $this->createForm(ParentPasswordType::class, $parent);
+
+        // request traitement
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $password=$request->get("parent_password")["mdp"]["first"];
+            $mdpCryp=$this->passwordHasher->hashPassword($parent, $password);
+            $parent->setPassword($mdpCryp);
+            $this->parentRepo->add($parent,true);
+            $this->addFlash("success", "Parent password modifié avec succès");
+            return $this->redirectToRoute("app_parent");
+        }
+
+        return $this->renderForm('e_parent/edit.password.html.twig', [
+            "form" => $form,
+        ]);
     }
 }
