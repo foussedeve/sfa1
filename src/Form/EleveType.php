@@ -26,7 +26,7 @@ class EleveType extends AbstractType
                     return $er->createQueryBuilder('u')
                     ->andWhere('u.isParent = :isParent')
                     ->setParameter('isParent', true)
-                        ->orderBy('u.id', 'ASC');
+                        ->orderBy('u.nom', 'ASC');
                 },
            "choice_label"=>"nom"
             ])
