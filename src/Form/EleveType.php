@@ -20,6 +20,7 @@ class EleveType extends AbstractType
         $builder
             ->add('nom')
             ->add('prenom')
+            ->add('matricule')
             ->add('parent',EntityType::class,[
                 "class"=>User::class,
                 'query_builder' => function (EntityRepository $er) {

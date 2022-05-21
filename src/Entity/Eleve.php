@@ -56,6 +56,11 @@ class Eleve
      */
     private $classe;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $matricule;
+
     public function __construct()
     {
         $this->notes = new ArrayCollection();
@@ -202,6 +207,18 @@ class Eleve
     public function setClasse(?Classe $classe): self
     {
         $this->classe = $classe;
+
+        return $this;
+    }
+
+    public function getMatricule(): ?string
+    {
+        return $this->matricule;
+    }
+
+    public function setMatricule(?string $matricule): self
+    {
+        $this->matricule = $matricule;
 
         return $this;
     }

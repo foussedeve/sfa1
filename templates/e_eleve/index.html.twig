@@ -17,22 +17,22 @@
                     <thead>
                         <tr>
                             <th>#</th>
+                            <th>Matricule</th>
                             <th>Nom</th>
-                            <th>Prénom</th>
+                            <th>Prénom</th> 
                             <th>Parent</th>
                             <th>Classe</th>
                             <th>Actions</th>
 
                         </tr>
                     </thead>
-
-
                     <tbody>
                         {% for eleve in eleves %}
                         <tr>
                             <td>{{eleve.id}}</td>
+                            <td>{{eleve.matricule}}</td>
                             <td>{{eleve.nom}}</td>
-                            <td>{{eleve.prenom}}</td>
+                            <td>{{eleve.prenom}}</td>                           
                             <td>{{eleve.parent.nom}}</td>
                             <td>{{eleve.classe.nom}}</td>
                             
