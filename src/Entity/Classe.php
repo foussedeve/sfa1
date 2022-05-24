@@ -84,6 +84,6 @@ class Classe
     }
     public function __toString()
     {
-        return $this->nom." ".$this->prenom;
+        return $this->nom;
     }
 }

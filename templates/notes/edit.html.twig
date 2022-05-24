@@ -1,0 +1,31 @@
+
+{% extends 'base.ecole.html.twig' %}
+
+{% block title %}Modification de note{% endblock %}
+
+{% block body %}
+<div class="row">
+    <div class="card">
+
+        <div class="card-body">
+            <h4 class="">Modifier la note</h4>
+            {{form_start(form)}}
+            <div class="form-group">
+                {{form_row(form.note,{"attr":{"placeholder":"","class":"form-control"},"label":"Note:"})}}
+            </div>
+            <div class="form-group">
+                {{form_row(form.matiere,{"attr":{"placeholder":" ","class":"form-control"},"label":"Matière:"})}}
+            </div>
+            <div class="form-group">
+                {{form_row(form.eleve,{"attr":{"placeholder":" ","class":"form-control"},"label":"eleve:"})}}
+            </div>
+        
+
+    <button type="submit" class="btn btn-primary bg-info  mr-2">Modifier</button>
+    <button type="reset" class="btn btn-light">Cancel</button>
+    {{form_end(form)}}
+</div>
+
+</div>
+</div>
+{% endblock %}

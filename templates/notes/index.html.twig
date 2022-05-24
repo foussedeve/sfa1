@@ -1,20 +1,58 @@
-{% extends 'base.html.twig' %}
+{% extends 'base.ecole.html.twig' %}
 
-{% block title %}Hello NotesController!{% endblock %}
+{% block title %}Liste des notes{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+<div class="row ">
+    <div class="card">
+        
+        <div class="card-body">
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/Users/C55/Downloads/Web-projets/EssitechPhaseII/SYMFONY-AVANCEE/SFA1/src/Controller/NotesController.php'|file_link(0) }}">src/Controller/NotesController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/Users/C55/Downloads/Web-projets/EssitechPhaseII/SYMFONY-AVANCEE/SFA1/templates/notes/index.html.twig'|file_link(0) }}">templates/notes/index.html.twig</a></code></li>
-    </ul>
+            {% if notes %}
+            <h4 class="card-title">Liste des notes</h4>
+           <div class="table-responsive">
+           
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>MTRICULE</th>
+                        <th>ELEVE</th>
+                        <th>MATIERE</th>
+                        <th>NOTE</th> 
+                        <th>Actions</th>
+                        
+                    </tr>
+                </thead>
+                
+            
+                <tbody>
+                    {% for note in notes %}
+                    <tr>
+                        <td>{{note.eleve.matricule}}</td>
+                        <td>{{note.eleve}}</td>
+                            <td>{{note.matiere}}</td>
+                        <td>{{note.note}}</td>                     
+                        <td>
+                            
+                             <button type="button" class=" btn-link btn btn-primary   mr-2"><a href="{{path("edit_note",{"id":note.id})}}" class="text-light ">Editer</a></button>
+                            <button type="button" class="btn btn-warning   mr-2"><a href="{{path("del_note",{"id":note.id})}}" class="text-light ">Supp</a></button> 
+                        </td>
+                        
+                        
+                    </tr>
+                    {% endfor %}
+                  
+                
+                </tbody>
+            </table>
+           </div>
+             
+            {% else %}
+            <h4>Aucune note</h4>
+            {% endif %}
+              
+        </div>
+    </div>
 </div>
+
 {% endblock %}

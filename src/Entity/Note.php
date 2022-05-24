@@ -28,7 +28,7 @@ class Note
     private $note;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Eleve::class, inversedBy="notes")
+     * @ORM\ManyToOne(targetEntity=Eleve::class, inversedBy="notes",cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $eleve;

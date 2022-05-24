@@ -193,12 +193,12 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+            <a class="nav-link" data-toggle="collapse" href="#parents" aria-expanded="false" aria-controls="parents">
               <i class="typcn typcn-document-text menu-icon"></i>
               <span class="menu-title">Parents</span>
               <i class="menu-arrow"></i>
             </a>
-            <div class="collapse" id="ui-basic">
+            <div class="collapse" id="parents">
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item"> <a class="nav-link" href="{{path("app_parent")}}">Liste</a></li>
                 <li class="nav-item"> <a class="nav-link" href="{{path("add_parent")}}">Ajouter</a></li>
@@ -207,12 +207,12 @@
             </div>
           </li>
           <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#form-elements" aria-expanded="false" aria-controls="form-elements">
+            <a class="nav-link" data-toggle="collapse" href="#eleves" aria-expanded="false" aria-controls="eleves">
               <i class="typcn typcn-film menu-icon"></i>
               <span class="menu-title">Eleves</span>
               <i class="menu-arrow"></i>
             </a>
-            <div class="collapse" id="form-elements">
+            <div class="collapse" id="eleves">
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item"><a class="nav-link" href="{{path("app_eleve")}}">Liste</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{path("add_eleve")}}">Ajouter</a></li>
@@ -220,15 +220,28 @@
             </div>
           </li>
           <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#charts" aria-expanded="false" aria-controls="charts">
+            <a class="nav-link" data-toggle="collapse" href="#classes" aria-expanded="false" aria-controls="classes">
               <i class="typcn typcn-chart-pie-outline menu-icon"></i>
               <span class="menu-title">Classes</span>
               <i class="menu-arrow"></i>
             </a>
-            <div class="collapse" id="charts">
+            <div class="collapse" id="classes">
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item"> <a class="nav-link" href="{{path("ecole_classe")}}">Liste</a></li>
                 <li class="nav-item"> <a class="nav-link" href="{{path("add_classe")}}">Ajouter</a></li>
+              </ul>
+            </div>
+          </li>
+            <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#notes" aria-expanded="false" aria-controls="notes">
+              <i class="typcn typcn-chart-pie-outline menu-icon"></i>
+              <span class="menu-title">Notes</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="notes">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="{{path("app_notes")}}">Liste</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{path("add_notes")}}">Ajouter</a></li>
               </ul>
             </div>
           </li>
