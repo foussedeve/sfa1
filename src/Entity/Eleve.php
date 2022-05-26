@@ -61,6 +61,11 @@ class Eleve
      */
     private $matricule;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $photo;
+
     public function __construct()
     {
         $this->notes = new ArrayCollection();
@@ -225,5 +230,17 @@ class Eleve
     public function __toString()
     {
         return $this->nom." ".$this->prenom;
+    }
+
+    public function getPhoto(): ?string
+    {
+        return $this->photo;
+    }
+
+    public function setPhoto(?string $photo): self
+    {
+        $this->photo = $photo;
+
+        return $this;
     }
 }

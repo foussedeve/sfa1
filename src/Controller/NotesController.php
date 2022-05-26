@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Classe;
 use App\Entity\Note;
 use App\Form\NoteType;
+use App\Service\EnvoieNoteService;
 use App\Repository\ClasseRepository;
 use App\Repository\EleveRepository;
 use App\Repository\NoteRepository;
@@ -16,6 +17,8 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Email;
 
 class NotesController extends AbstractController
 {
@@ -32,6 +35,21 @@ class NotesController extends AbstractController
 
 
 
+    /**
+     * @Route("/ecole/emails", name="app_mails")
+     */
+    public function mail(MailerInterface $mailer)
+    {
+        $email = new Email();
+        $email ->from('grecomgd@gmail.com')
+            ->to('foussedev@gmail.com')
+            ->subject('Time for Symfony Mailer!')
+            ->text('Sending emails is fun again!');
+
+        $mailer->send($email);
+        dd("mail envoyé");
+      
+    }
 
     /**
      * @Route("/ecole/notes", name="app_notes")
@@ -68,7 +86,7 @@ class NotesController extends AbstractController
     /**
      * @Route("/ecole/notes/add/step2", name="add_step1_notes")
      */
-    public function addStepNotes(Request $request, ClasseRepository $classeRepo): Response
+    public function addStepNotes(Request $request, ClasseRepository $classeRepo,EnvoieNoteService $envoieNote): Response
     {
 
         $formData = $request->get("form");
@@ -113,7 +131,7 @@ class NotesController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $data = $form->getData();
-           
+            $tabNote=[];
             foreach ($eleves as $eleve) {
                 $champName = "note_" . $eleve->getId();
                 $eleveNote = $data[$champName];
@@ -121,8 +139,17 @@ class NotesController extends AbstractController
                 $note->setMatiere($data["matiere"])
                     ->setNote($eleveNote);
                 $eleve->addNote($note);
-                $this->noteRepo->add($note);
+               // $this->noteRepo->add($note);
+                $tabNote[]=[
+                   "email"=>$eleve->getParent()->getEmail(),
+                   "note"=>$eleveNote,
+                   "matiere"=>$matiere,
+                   "eleve"=>$eleve->getNom()
+                ];
+
             }
+            $envoieNote->envoyerNote($tabNote);
+            dd($tabNote);
             $this->addFlash("success", "Notes ajoutées avec succès");
             return $this->redirectToRoute("app_notes");
         }
