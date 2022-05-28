@@ -8,6 +8,7 @@ use App\Entity\User;
 use App\Entity\Classe;
 use App\Form\EleveType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -44,7 +45,21 @@ class EEleveController extends AbstractController
         
         $form = $this->createForm(EleveType::class, $eleve);
         $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {        
+
+        if ($form->isSubmitted() && $form->isValid()) {    
+            $photoFile=$form->get("photoFile")->getData();
+            $photoFile=$form->get("photoFile")->getData();
+            $photoFile->getClientOriginalName(); 
+            $newFilename=$eleve->getMatricule().".". $photoFile->guessExtension(); 
+            try {
+                $photoFile->move(
+                    $this->getParameter("images_directory"),
+                    $newFilename
+                );
+            } catch (FileException $e) {
+                
+            } 
+            $eleve->setPhoto($newFilename); 
             $this->eleveRepo->add($eleve,true);
             $this->addFlash("success", "Elève  ajouté avec succès");
             return $this->redirectToRoute("app_eleve");

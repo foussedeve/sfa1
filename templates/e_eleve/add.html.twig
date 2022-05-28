@@ -11,6 +11,9 @@
             <h4 class="">Ajouter un nouveau parent</h4>
             {{form_start(form)}}
             <div class="form-group">
+                {{form_row(form.photoFile,{"attr":{"placeholder":"","class":"form-control"},"label":"Photo de l'éleve:"})}}
+            </div>
+            <div class="form-group">
                 {{form_row(form.nom,{"attr":{"placeholder":"","class":"form-control"},"label":"Nom:"})}}
             </div>
             <div class="form-group">

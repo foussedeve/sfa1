@@ -12,12 +12,27 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Doctrine\ORM\EntityRepository;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Validator\Constraints\File;
 
 class EleveType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
+        ->add('photoFile',FileType::class,[
+            "mapped" =>false,
+            "constraints" =>[
+                new File([
+                    "maxSize"=>"2M",
+                    "mimeTypes"=>[
+                        "image/jpg",
+                        "image/png",
+                    ]
+                    
+                    ])
+            ]
+            ])
             ->add('nom')
             ->add('prenom')
             ->add('matricule')
