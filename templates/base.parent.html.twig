@@ -25,7 +25,7 @@
                             <a class="nav-link active" aria-current="page" href="#">Accueil</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" href="#">Elèves</a>
+                            <a class="nav-link text-dark" href={{path("parent_eleves")}}>Elèves</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark " href="#">Messages</a>
@@ -75,7 +75,7 @@
         </nav>
     </header>
 
-<main class="container">
+<main class="container mt-5 pt-5">
 {% block body%}
 {% endblock %}
 

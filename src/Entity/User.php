@@ -82,6 +82,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $isActif;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $lastConnexion;
+
     public function __construct()
     {
         $this->messages = new ArrayCollection();
@@ -312,5 +317,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function __toString()
     {
         return $this->nom." ".$this->prenom;
+    }
+
+    public function getLastConnexion(): ?string
+    {
+        return $this->lastConnexion;
+    }
+
+    public function setLastConnexion(?string $lastConnexion): self
+    {
+        $this->lastConnexion = $lastConnexion;
+
+        return $this;
     }
 }

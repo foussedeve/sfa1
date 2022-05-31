@@ -1,0 +1,53 @@
+{% extends 'base.parent.html.twig' %}
+
+{% block title %}Liste des enfants de - {{app.user.nom}} {{app.user.prenom}}{% endblock %}
+
+{% block body %}
+
+<div class="row ">
+    <div class="card col-sm-10 mx-auto">
+
+        <div class="card-body">
+
+            {% if eleves %}
+            <h4 class="card-title mb-4">Les enfants de <strong>{{app.user.nom}} {{app.user.prenom}}</strong></h4>
+            <div class="table-responsive">
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Nom</th>
+                            <th>Prénom</th>
+                            <th>Classe</th>
+                            <th>Matricule</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for eleve in eleves %}
+                        <tr>
+                            <td>{{eleve.nom}}</td>
+                            <td>{{eleve.prenom}}</td>
+                            <td>{{eleve.classe.nom}}</td>
+                            <td>{{eleve.matricule}}</td>
+                            
+                            <td>
+                                <button type="button" class=" btn-link btn btn-primary   mr-2"><a href="{{path("eleve_notes",{"id":eleve.id})}}" class="text-light ">Notes</a></button>
+
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            {% else %}
+            <h4>Aucun eleve</h4>
+            {% endif %}
+
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
